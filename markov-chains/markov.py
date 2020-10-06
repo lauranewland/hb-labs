@@ -1,7 +1,9 @@
 """Generate Markov text from text files."""
 
 from random import choice
+import sys
 
+file_name = sys.argv[1]
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -11,8 +13,10 @@ def open_and_read_file(file_path):
     """
 
     # your code goes here
+    file = open(file_name)
+    text = file.read()
+    return text
 
-    return 'Contents of your file as one long string'
 
 
 def make_chains(text_string):
@@ -38,10 +42,30 @@ def make_chains(text_string):
 
         >>> chains[('there','juanita')]
         [None]
+        
+        {Would, you} : [could, could, could, like, like]
     """
-
+    full_text = open_and_read_file(file_name)
+    full_text_lst = full_text.rstrip('\n').split()
+    
     chains = {}
 
+    for i in range(len(full_text_lst) - 2):
+        key_list = []
+        
+        key_list.append(full_text_lst[i])
+        key_list.append(full_text_lst[i + 1])
+
+        key_tuple = tuple(key_list)
+
+        value = []
+        value.append(full_text_lst[i + 2])
+        print(full_text_lst[i+2])
+
+        chains[key_tuple] = value
+
+
+    print(chains)
     # your code goes here
 
     return chains
