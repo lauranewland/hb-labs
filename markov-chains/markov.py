@@ -51,21 +51,24 @@ def make_chains(text_string):
     chains = {}
 
     for i in range(len(full_text_lst) - 2):
+        # the next 3 lines will create a empty list and then appends the word at i(would) & i+1(you)
         key_list = []
-        
         key_list.append(full_text_lst[i])
         key_list.append(full_text_lst[i + 1])
 
-        key_tuple = tuple(key_list)
+        key_tuple = tuple(key_list) #takes the key_list and convers it to a tuple {would, you}
 
-        value = []
-        value.append(full_text_lst[i + 2])
-        print(full_text_lst[i+2])
+        
+        if key_tuple in chains.keys():
+            chains.get(key_tuple).append(full_text_lst[i + 2])
+        else:
+            chains[key_tuple] = [full_text_lst[i + 2]]
+            
+                
 
-        chains[key_tuple] = value
+    for k, v in chains.items():
+        print(f"{k}: {v})")
 
-
-    print(chains)
     # your code goes here
 
     return chains
@@ -74,11 +77,19 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
+    dictionary = make_chains(file_name)
+    print(dictionary)
     words = []
 
     # your code goes here
 
-    return ' '.join(words)
+    # while tuple in keys:
+
+    # next_key = key[1] + next_word
+
+    # next_word = random.choice(chains[key])
+
+    # return ' '.join(words)
 
 
 input_path = 'green-eggs.txt'
