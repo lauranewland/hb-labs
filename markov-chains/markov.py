@@ -3,7 +3,7 @@
 from random import choice
 import sys
 
-file_name = sys.argv[1]
+# file_name = sys.argv[1]
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -13,7 +13,7 @@ def open_and_read_file(file_path):
     """
 
     # your code goes here
-    file = open(file_name)
+    file = open(input_path)
     text = file.read()
     return text
 
@@ -45,7 +45,7 @@ def make_chains(text_string):
         
         {Would, you} : [could, could, could, like, like]
     """
-    full_text = open_and_read_file(file_name)
+    full_text = open_and_read_file(input_path)
     full_text_lst = full_text.rstrip('\n').split()
     
     chains = {}
@@ -63,11 +63,10 @@ def make_chains(text_string):
             chains.get(key_tuple).append(full_text_lst[i + 2])
         else:
             chains[key_tuple] = [full_text_lst[i + 2]]
-            
+        
                 
-
-    for k, v in chains.items():
-        print(f"{k}: {v})")
+    # for k, v in chains.items():
+    #     print(f"{k}: {v})")
 
     # your code goes here
 
@@ -76,23 +75,28 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-
-    dictionary = make_chains(file_name)
-    print(dictionary)
-    words = []
-
-    # your code goes here
-
-    # while tuple in keys:
-
-    # next_key = key[1] + next_word
-
-    # next_word = random.choice(chains[key])
-
-    # return ' '.join(words)
+    chains = make_chains(input_path)
+      
+    first_key = choice(list(chains.keys()))
+    words = [first_key[0], first_key[1]]
+    first_word = choice(chains[first_key])
 
 
-input_path = 'green-eggs.txt'
+    while first_word is not None:
+        first_key = (first_key[1], first_word)
+        words.append(first_word)
+        first_word = choice(chains[first_key])        
+
+    return ' '.join(words)
+
+
+# Get the filepath from the user through a command line prompt, ex:
+# python markov.py green-eggs.txt
+
+input_path = sys.argv[1]
+
+# This could also say something like:
+#   input_path = 'green-eggs.txt'
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
