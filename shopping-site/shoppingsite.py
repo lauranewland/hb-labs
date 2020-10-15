@@ -9,7 +9,6 @@ Authors: Joel Burton, Christian Fernandez, Meggie Mahnken, Katie Byers.
 from flask import Flask, render_template, redirect, flash, session
 import jinja2
 
-
 import melons
 
 app = Flask(__name__)
@@ -101,14 +100,16 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
 
-    if session['cart'] != {}:
+    if type(session['cart']) is not dict:
         session['cart'] = {}
 
     session['cart'][melon_id] = session['cart'].get(melon_id, 0) + 1
 
     print(session['cart'])
+    
+    flash(f'{melons.melon_types[melon_id].common_name} has been added to the cart.')
 
-    return "Oops! This needs to be implemented!"
+    return redirect("/cart")
 
 
 @app.route("/login", methods=["GET"])
