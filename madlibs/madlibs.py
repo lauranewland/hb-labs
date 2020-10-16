@@ -40,7 +40,6 @@ def greet_person():
     return render_template("compliment.html",
                            person=player,
                            compliment=compliment)
-@app.route('/madlib')
 
 
 @app.route('/game')
@@ -56,6 +55,7 @@ def show_madlib_form():
     else:
         return render_template('game.html', name=answer, value ='yes')
 
+
 @app.route('/madlibs')
 def show_madlib():
 
@@ -65,7 +65,7 @@ def show_madlib():
     picked_adjective = request.args.get('adjective')
 
     
-    return render_template('madlib.html')
+    return render_template('madlib.html', names=picked_name, color=picked_color, noun=picked_noun, adjective=picked_adjective)
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
