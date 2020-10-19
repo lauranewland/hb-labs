@@ -84,9 +84,12 @@ def show_shopping_cart():
     total_cost = 0
 
     for melon, qty in cart_dict.items():
+
         melon_obj = melons.get_by_id(melon)
+
         total_cost += melon_obj.price * qty
         melon_obj.qty = qty
+
         melon_obj.total = melon_obj.price * qty
         cart_list.append(melon_obj)
         
