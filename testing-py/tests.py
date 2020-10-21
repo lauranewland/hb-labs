@@ -39,8 +39,6 @@ class PartyTests(unittest.TestCase):
         self.assertIn(b"Treats", result.data)
 
 
-        
-
     def test_rsvp_mel(self):
         """Can we keep Mel out?"""
 
