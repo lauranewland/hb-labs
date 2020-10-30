@@ -54,7 +54,6 @@ const disableLetterButton = (buttonEl) => {
 
 
 
-
 // Return `true` if `letter` is in the word.
 //
 const isLetterInWord = (letter) => {
@@ -69,14 +68,23 @@ const handleCorrectGuess = (letter) => {
   $(`div.${letter}`).html(letter);
 };
 
+
+
 // Called when `letter` is not in word.
 //
 // If the shark gets the person, disable all buttons and show the "play again"
 // message. Otherwise, increment `numWrong` and update the shark image.
 //
 const handleWrongGuess = () => {
-  // Replace this with your code
+  wrongGuessCount += 1;
+
+  if (wrongGuessCount === 5) {
+    $('button').attr('disabled', true);
+    $('$play-again').css({display:'block'});
+  }
 };
+
+
 
 //  Reset game state. Called before restarting the game.
 //
