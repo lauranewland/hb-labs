@@ -41,6 +41,11 @@ def create_rating(user, movie, score):
 
     return rating
 
+def get_movie_by_id(movie_id):
+    """Get a Movie by ID"""  
+
+
+    return Movie.query.get(movie_id)
 
 
 if __name__ == '__main__':
