@@ -52,6 +52,24 @@ def show_user_profile(user_id):
 
     return render_template('user_details.html', user=user)
 
+@app.route('/users', methods=['POST'])
+def register_user():
+    """Create a new user."""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        flash('Cannot create and account with that email. Try again.')
+    else:
+        crud.create_user(email, password)
+        flash('Account created! Please log in.')
+
+    return redirect('/')
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
