@@ -16,6 +16,8 @@ const WORDS = [
 
 let numWrong = 0;
 
+
+
 // Loop over the chars in `word` and create divs.
 //
 const createDivsForChars = (word) => {
@@ -25,6 +27,8 @@ const createDivsForChars = (word) => {
     $('#word-container').append(`<div class="letter-box ${letter}"></div>`);
   }
 };
+
+
 
 // Loop over each letter in `ALPHABET` and generate buttons.
 //
@@ -36,12 +40,16 @@ const generateLetterButtons = () => {
   }
 };
 
+
+
 // Set the `disabled` property of `buttonEl` to `true.
 //
 // `buttonEl` is an `HTMLElement` object.
 //
 const disableLetterButton = (buttonEl) => {
-  // Replace this with your code
+  // After the button is clicked it will be greyed out and unclickable 
+  $(buttonEl).attr('disabled', true);
+
 };
 
 // Return `true` if `letter` is in the word.
