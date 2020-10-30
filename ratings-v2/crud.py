@@ -47,6 +47,11 @@ def get_movie_by_id(movie_id):
 
     return Movie.query.get(movie_id)
 
+def get_users():
+    """Return all users"""
+
+    return User.query.all()
+
 
 if __name__ == '__main__':
     from server import app
